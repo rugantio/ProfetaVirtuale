@@ -15,3 +15,10 @@ A Recurrent Neural Network trained on the Bible, using Karpathy's char-rnn imple
 - Il dataset a nostra disposizione è relativamente piccolo, ≈ 5.5M B il che significa che il rischio di overfitting è grande. Per ovviare al problema di memorizzare troppo correttamente la Bibbia e non essere in grado di generare del testo originale utilizziamo un metodo di regolarizzazione, il dropout, che fa fuori il 20% delle cellule ogni ciclo di training.
 - Il dropout può essere applicato sia agli input che agli output di un layer denso e questo non fa molta differenza. Osservando la matrice dei pesi di uno strato denso vedo che applicare il dropout agli input equivale a far cadere le linee nella matrice dei pesi mentre applicare il dropout agli output equivale a rimuovere le colonne. Negli RNN è consuetudine aggiungere il dropout agli input in tutti i layer della cella e l’output dell’ultimo layer, che in realtà serve come dropout di input del layer softmax, quindi non è necessario aggiungerlo esplicitamente.
 - Il dropout dovrebbe essere applicato agli input e agli output RNN ma non agli stati. In questo approccio, una maschera di esclusione casuale viene ricalcolata ad ogni passo della sequenza srotolata. Questo approccio è chiamato ”naive dropout” ed è quello implementato in questo esperimento.
+
+# Risultati 
+- Tensorflow 1.8, Nvidia GeForce 940MX, 384 Cuda Cores. ≈ 24h training
+- Si notano già ottimi risultati dopo poche ore (4 o 5) con un hardware casalingo.
+- Il dropout fa naturalmente aumentare il tempo di decadimento della funzione di errore ma è il prezzo da pagare per avere una migliore generalizzazione.
+- Diverse finestre temporali sono state scelte. Solo con una finestra temporale abbastanza lunga, > 30 la rete è stata in grado di apprendere l’ordine dei versetti e le regole sintattiche come aprire-chiudere virgolette.
+- È possibile fare un sampling diverso dei caratteri, scegliendo anche quelli meno probabili con una certa frequenza, che equivale ad alzare o abbassare la “temperatura” del generatore.
