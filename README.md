@@ -10,15 +10,8 @@ A Recurrent Neural Network trained on the Bible, using Karpathy's char-rnn imple
 # Realizzazione
 - Idea: Una rete neurale ricorrente allenata sulla Bibbia.
 - Come funzione di errore si può usare la Cross Entropy:
-- Come funzione di minimizzazione dell’errore utilizzo Adam, “adaptive moment
-estimation” un’estensione della discesa del gradiente stocastica, presentata nel
-2015, che unisce i vantaggi di due altre estensioni della discesa del gradiente
-stocastico ovvero: Adaptive Gradient Algorithm (AdaGrad) che mantiene un
-tasso di apprendimento per parametro che migliora le prestazioni in caso di
-problemi con gradienti sparsi e RMSProp, che mantiene anche i tassi di
-apprendimento che vengono adattati in base alla media delle grandezze recenti
-dei gradienti per il peso (quanto velocemente sta cambiando). Ciò significa che
-l’algoritmo funziona bene su problemi online e non stazionari (ad es. Rumoroso).
-Adam, invece di adattare i tassi di apprendimento dei parametri in base al primo
-momento medio (la media) come in RMSProp, fa anche uso della media dei
-secondi momenti dei gradienti (la varianza non centrata).
+- Come funzione di minimizzazione dell’errore utilizzo Adam, “adaptive moment estimation” un’estensione della discesa del gradiente stocastica, presentata nel 2015, che unisce i vantaggi di due altre estensioni della discesa del gradiente stocastico ovvero: Adaptive Gradient Algorithm (AdaGrad) che mantiene un tasso di apprendimento per parametro che migliora le prestazioni in caso di problemi con gradienti sparsi e RMSProp, che mantiene anche i tassi di apprendimento che vengono adattati in base alla media delle grandezze recenti dei gradienti per il peso (quanto velocemente sta cambiando). Ciò significa che l’algoritmo funziona bene su problemi online e non stazionari (ad es. Rumoroso). Adam, invece di adattare i tassi di apprendimento dei parametri in base al primo momento medio (la media) come in RMSProp, fa anche uso della media dei secondi momenti dei gradienti (la varianza non centrata).
+- Come cella di memoria usiamo una GRU nella quale imagazzino un carattere alla volta con un encoding one-hot, ottengo un alfabeto di ≈ 100 simboli fra maiuscole, minuscole e punteggiatura.
+- Il dataset a nostra disposizione è relativamente piccolo, ≈ 5.5M B il che significa che il rischio di overfitting è grande. Per ovviare al problema di memorizzare troppo correttamente la Bibbia e non essere in grado di generare del testo originale utilizziamo un metodo di regolarizzazione, il dropout, che fa fuori il 20% delle cellule ogni ciclo di training.
+- Il dropout può essere applicato sia agli input che agli output di un layer denso e questo non fa molta differenza. Osservando la matrice dei pesi di uno strato denso vedo che applicare il dropout agli input equivale a far cadere le linee nella matrice dei pesi mentre applicare il dropout agli output equivale a rimuovere le colonne. Negli RNN è consuetudine aggiungere il dropout agli input in tutti i layer della cella e l’output dell’ultimo layer, che in realtà serve come dropout di input del layer softmax, quindi non è necessario aggiungerlo esplicitamente.
+- Il dropout dovrebbe essere applicato agli input e agli output RNN ma non agli stati. In questo approccio, una maschera di esclusione casuale viene ricalcolata ad ogni passo della sequenza srotolata. Questo approccio è chiamato ”naive dropout” ed è quello implementato in questo esperimento.
