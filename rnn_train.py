@@ -20,7 +20,6 @@ tf.set_random_seed(0)
 #         You can now play with the parameters anf follow the effects in Tensorboard
 #         A good choice of parameters ensures that the testing and validation curves stay close
 #         To see the curves drift apart ("overfitting") try to use an insufficient amount of
-#         training data (shakedir = "shakespeare/t*.txt" for example)
 #
 SEQLEN = 200
 BATCHSIZE = 80
@@ -30,10 +29,8 @@ NLAYERS = 3
 learning_rate = 0.001  # fixed learning rate
 dropout_pkeep = 0.8    # some dropout
 
-# load data, either shakespeare, or the Python source of Tensorflow itself
-shakedir = "shakespeare/*.txt"
-#shakedir = "../tensorflow/**/*.py"
-codetext, valitext, bookranges = txt.read_data_files(shakedir, validation=True)
+bibledir = "bible/*.txt"
+codetext, valitext, bookranges = txt.read_data_files(bibledir, validation=True)
 
 # display some stats on the data
 epoch_size = len(codetext) // (BATCHSIZE * SEQLEN)
@@ -173,26 +170,3 @@ for x, y_, epoch in txt.rnn_minibatch_sequencer(codetext, BATCHSIZE, SEQLEN, nb_
     # loop state around
     istate = ostate
     step += BATCHSIZE * SEQLEN
-
-# all runs: SEQLEN = 30, BATCHSIZE = 100, ALPHASIZE = 98, INTERNALSIZE = 512, NLAYERS = 3
-# run 1477669632 decaying learning rate 0.001-0.0001-1e7 dropout 0.5: not good
-# run 1477670023 lr=0.001 no dropout: very good
-
-# Tensorflow runs:
-# 1485434262
-#   trained on shakespeare/t*.txt only. Validation on 1K sequences
-#   validation loss goes up from step 5M (overfitting because of small dataset)
-# 1485436038
-#   trained on shakespeare/t*.txt only. Validation on 5K sequences
-#   On 5K sequences validation accuracy is slightly higher and loss slightly lower
-#   => sequence breaks do introduce inaccuracies but the effect is small
-# 1485437956
-#   Trained on shakespeare/*.txt. Validation on 1K sequences
-#   On this much larger dataset, validation loss still decreasing after 6 epochs (step 35M)
-# 1495447371
-#   Trained on shakespeare/*.txt no dropout, 30 epochs
-#   Validation loss starts going up after 10 epochs (overfitting)
-# 1495440473
-#   Trained on shakespeare/*.txt "naive dropout" pkeep=0.8, 30 epochs
-#   Dropout brings the validation loss under control, preventing it from
-#   going up but the effect is small.
