@@ -27,5 +27,5 @@ A Recurrent Neural Network trained on the Bible, using Karpathy's char-rnn imple
 ```
 Perché io sono il Signore, tuo Dio, che ha fatto così al mio popolo Israele e ha preso in mondo la tua
 parola e io sono il Signore, tuo Dio, e con la sua vita e il suo sangue straniero e tutti gli Israeliti
-divorano la tua voce e il tuo popolo Israele si allontana da te e che sei scelto.
+divorano la tua voce e il tuo popolo Israele si allontana da te che sei scelto.
 ```
