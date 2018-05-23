@@ -22,3 +22,8 @@ A Recurrent Neural Network trained on the Bible, using Karpathy's char-rnn imple
 - Il dropout fa naturalmente aumentare il tempo di decadimento della funzione di errore ma è il prezzo da pagare per avere una migliore generalizzazione.
 - Diverse finestre temporali sono state scelte. Solo con una finestra temporale abbastanza lunga, > 30 la rete è stata in grado di apprendere l’ordine dei versetti e le regole sintattiche come aprire-chiudere virgolette.
 - È possibile fare un sampling diverso dei caratteri, scegliendo anche quelli meno probabili con una certa frequenza, che equivale ad alzare o abbassare la “temperatura” del generatore.
+
+# Bibbia 2.0
+```
+Perché io sono il Signore, tuo Dio, che ha fatto così al mio popolo Israele e ha preso in mondo la tua parola e io sono il Signore, tuo Dio, e con la sua vita e il suo sangue straniero e tutti gli Israeliti divorano la tua voce e il tuo popolo Israele si allontana da te e che sei scelto.
+```
