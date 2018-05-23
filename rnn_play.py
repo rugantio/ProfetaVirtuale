@@ -7,7 +7,7 @@ ALPHASIZE = my_txtutils.ALPHASIZE
 NLAYERS = 3
 INTERNALSIZE = 512
 
-author = "checkpoints/rnn_train_1526692149-336000000"
+author = "checkpoints/rnn_train_1526692149-432000000"
 
 ncnt = 0
 with tf.Session() as sess:
