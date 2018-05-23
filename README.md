@@ -1,6 +1,12 @@
 # ProfetaVirtuale
 A Recurrent Neural Network trained on the Bible, using Karpathy's char-rnn implemented in TensorFlow 
 
+# Struttura del progetto
+- La presentazione completa è disponibile in formato pdf corredata di immagini nel file reti.pdf
+- Il codice relativo al training si trova in rnn_train.py
+- Una volta allenata la rete, l'esecuzione avviene eseguendo rnn_play.py
+- In my_txtutils.py sono presenti funzioni utili per gestire il testo e sistemarlo in mini-batches
+
 # Introduzione
 - Innumerevoli task di apprendimento hanno bisogno di gestire dati sequenziali o serie temporali.
 - Le Reti Neurali Ricorrenti (RNN) sono modelli di connessione che catturano la dinamica delle sequenze tramite cicli nella rete dei nodi. A differenza delle reti neurali feed-forward, le reti ricorrenti utilizzano un circuito di feedback collegato alle loro decisioni passate, ingerendo le loro uscite momento dopo momento come input o in alternativa si può dire che utilizzano un vettore di stato che può rappresentare informazione da una finestra di contesto (arbitrariamente lunga).
