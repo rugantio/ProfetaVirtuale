@@ -2,10 +2,12 @@
 A Recurrent Neural Network trained on the Bible, using Karpathy's char-rnn implemented in TensorFlow 
 
 # Struttura del progetto
-- La presentazione completa è disponibile in formato pdf corredata di immagini nel file reti.pdf
+- La presentazione completa è disponibile in formato pdf corredata di immagini nel file reti.pdf (di seguito un breve riassunto)
 - Il codice relativo al training si trova in rnn_train.py
-- Una volta allenata la rete, l'esecuzione avviene eseguendo rnn_play.py
+- Una volta allenata la rete, l'esecuzione avviene eseguendo rnn_play.py da un checkpoint salvato
 - In my_txtutils.py sono presenti funzioni utili per gestire il testo e sistemarlo in mini-batches
+- Nella cartella checkpoints è già presente una rete allenata su 100 epoch, corredata dai grafici memorizzati nella cartella log, visualizzabili con tensorboard 
+- Un esempio di output della rete è nel file nuovolibro.txt
 
 # Introduzione
 - Innumerevoli task di apprendimento hanno bisogno di gestire dati sequenziali o serie temporali.
